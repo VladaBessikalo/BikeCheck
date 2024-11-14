@@ -1,7 +1,6 @@
 import { createMainPage } from "./views/main-view.js"
 
 const loadApp = () => {
-    
     createMainPage;
   };
   
