@@ -54,3 +54,5 @@ export const twitterIcon = `
         </svg>
     </a>
 `
+
+export const bikeIconPath = 'public/bike-sport-travel-svgrepo-com.svg'

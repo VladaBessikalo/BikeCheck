@@ -1,7 +1,7 @@
-import { createMainPage } from "./views/main-view.js"
+import { renderMainPage } from "../src/pages/main-page.js"
 
 const loadApp = () => {
-    createMainPage;
+    renderMainPage();
   };
   
 window.addEventListener('load', loadApp)
