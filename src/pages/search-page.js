@@ -1,6 +1,6 @@
 import { createSearchForm } from '../views/search-view.js';
 import { searchBikes } from '../util/fetch-data.js'; 
-import { createWrongSearchMessage } from '../views/error-view.js';
+import { renderError } from './error-page.js';
 
 export async function setupSearchPage() {
     createSearchForm();
@@ -21,9 +21,7 @@ export async function setupSearchPage() {
                 const { createBikeList } = await import('../views/main-view.js');
                 createBikeList({ data });
             } else {
-            //     alert('No bikes found matching your criteria.');
-            //    // show pop-up with error
-               createWrongSearchMessage()
+                renderError()
             }
         } catch (error) {
             console.error('Error searching for bikes:', error);
