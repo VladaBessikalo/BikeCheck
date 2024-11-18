@@ -1,3 +1,5 @@
+import { renderError } from "../pages/error-page.js";
+
 let searchParams = 'location=NL%2C%20Amsterdam%2C%20Netherlands&distance=50';
 export const bikesPerPage = 24;
 export let currentPage = 1;
@@ -14,7 +16,9 @@ export async function fetchData(page = 1) {
     const response = await fetch(`https://bikeindex.org:443/api/v3/search?page=${page}&per_page=${bikesPerPage}&${searchParams}&stolenness=proximity`);
     
     if (!response.ok) {
-        throw new Error("Oops", console.error);
+        const error = new Error(`HTTP error! Status: ${response.status}`);
+
+        renderError(error);
     }
 
     const data = response.json();
@@ -25,7 +29,9 @@ export async function getBikesCount() {
     const response = await fetch(`https://bikeindex.org:443/api/v3/search/count?${searchParams}&stolenness=proximity`);
     
     if (!response.ok) {
-        throw new Error("Oops", console.error);
+        const error = new Error("Something went wrong while searching. Please try again later.");
+        
+        renderError(error);
     }
 
     const data = await response.json();
@@ -54,7 +60,9 @@ export async function searchBikes({ serial, location, manufacturer }) {
     const response = await fetch(url);
 
     if (!response.ok) {
-        throw new Error("Error fetching search responses");
+        const error = new Error("Error fetching search responses");
+        
+        renderError(error);
     }
 
     const data = await response.json();

@@ -21,11 +21,10 @@ export async function setupSearchPage() {
                 const { createBikeList } = await import('../views/main-view.js');
                 createBikeList({ data });
             } else {
-                renderError()
+                renderError('No bikes found matching your criteria')
             }
         } catch (error) {
-            console.error('Error searching for bikes:', error);
-            alert('Something went wrong while searching. Please try again later.');
+            renderError('Something went wrong while searching. Please try again later.');
         }
     })
 }

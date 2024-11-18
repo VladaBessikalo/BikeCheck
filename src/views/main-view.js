@@ -8,7 +8,7 @@ export function createHeader() {
     header.classList.add('header');
     header.innerHTML = `
             <div class="header__logo">
-                <a href='#'>${bikeCheckLogo}</a>
+                <span>${bikeCheckLogo}</span>
             </div>
             <div class="header__info">
                 <div class="header__name">BikeCheck</div>
@@ -89,13 +89,6 @@ export async function createBikeList(fetchedData) {
     }
 
     header.insertAdjacentElement('afterend', container);
-}
-
-export function renderError(errorMessage) {
-    const container = document.createElement('div');
-    container.innerHTML = `<p class="error">${errorMessage}</p>`;
-    const body = document.querySelector('body');
-    body.appendChild(container);
 }
 
 async function createPagination(container) {
