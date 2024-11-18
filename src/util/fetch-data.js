@@ -10,52 +10,53 @@ export function goToPrevPage() {
     currentPage--;
 }
 
-export async function fetchData(page = 1, ) {
-    const result = await fetch(`https://bikeindex.org:443/api/v3/search?page=${page}&per_page=${bikesPerPage}&${searchParams}&stolenness=proximity`);
+export async function fetchData(page = 1) {
+    const response = await fetch(`https://bikeindex.org:443/api/v3/search?page=${page}&per_page=${bikesPerPage}&${searchParams}&stolenness=proximity`);
     
-    if (!result.ok) {
+    if (!response.ok) {
         throw new Error("Oops", console.error);
     }
 
-    const data = result.json();
+    const data = response.json();
     return {data, page};
 }
 
 export async function getBikesCount() {
-    const result = await fetch(`https://bikeindex.org:443/api/v3/search/count?${searchParams}&stolenness=proximity`);
+    const response = await fetch(`https://bikeindex.org:443/api/v3/search/count?${searchParams}&stolenness=proximity`);
     
-    if (!result.ok) {
+    if (!response.ok) {
         throw new Error("Oops", console.error);
     }
 
-    const data = await result.json();
+    const data = await response.json();
     return data.proximity;
 }
 
-export async function searchBikes({ serial, location, model }) {
+export async function searchBikes({ serial, location, manufacturer }) {
     currentPage = 1;
 
     const queryParams = new URLSearchParams();
-
-    if (!location) queryParams.append('location', 'NL Netherlands');
-    if (!location) queryParams.append('distance', 50);
-
+    if (location) {
+        queryParams.append('location', location);
+        queryParams.append('distance', 10);
+    } else {
+        queryParams.append('location', 'NL Netherlands');
+        queryParams.append('distance', 50);
+    }
 
     if (serial) queryParams.append('serial', serial);
-    if (location) queryParams.append('location', location);
-    if (location) queryParams.append('distance', 10);
-    if (model) queryParams.append('manufacturer', model);
+    if (manufacturer) queryParams.append('manufacturer', manufacturer);
     
     searchParams = queryParams.toString();
 
     const url = `https://bikeindex.org:443/api/v3/search?page=1&per_page=${bikesPerPage}&${searchParams}&stolenness=proximity`;
     
-    const result = await fetch(url);
+    const response = await fetch(url);
 
-    if (!result.ok) {
-        throw new Error("Error fetching search results");
+    if (!response.ok) {
+        throw new Error("Error fetching search responses");
     }
 
-    const data = await result.json();
+    const data = await response.json();
     return data;
 }

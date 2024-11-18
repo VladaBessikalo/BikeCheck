@@ -52,7 +52,7 @@ export async function createBikeList(fetchedData) {
     container.classList.add('container');
     container.innerHTML = '';
 
-    const bikesList = document.createElement('div');
+    const bikesList = document.createElement('ul');
     bikesList.classList.add('bikes');
     bikesList.innerHTML = '';
 
@@ -64,11 +64,11 @@ export async function createBikeList(fetchedData) {
     const retrievedData = await fetchedData.data;
 
     retrievedData.bikes.forEach((bike) => {
-        const bikeItem = document.createElement('div');
+        const bikeItem = document.createElement('li');
         bikeItem.className = 'bike';
         const bikeImage = bike.large_img ? bike.large_img : bikeIconPath;
 
-        bikeItem.innerHTML = `
+        bikeItem.innerHTML = String.raw`
             <div class="bike__img">
                 <img class="bike__img-item" src="${bikeImage}" alt="bike-image">
             </div>

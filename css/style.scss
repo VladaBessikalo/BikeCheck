@@ -212,8 +212,38 @@ button {
         border-radius: 5px;
         color: #3A3A3A;
     }
-
-
 }
 
+.message {
+    &__container {
+        text-align: center;
+        padding: 2rem;
+        font-family: 'Helvetica', sans-serif;
+      
+        h1 {
+          font-size: 2rem;
+          color: #f44e3b;
+        }
+      
+        p {
+          font-size: 1rem;
+          color: #333;
+        }
+      
+        .back-button {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          background-color: #fdd09b;
+          color: #333;
+          text-decoration: none;
+          font-size: 1rem;
+          border-radius: 5px;
+          margin-top: 1rem;
+      
+          &:hover {
+            background-color: #e0c28e
+          }    
+        }
+    }
+}
 
