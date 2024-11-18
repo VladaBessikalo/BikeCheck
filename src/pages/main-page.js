@@ -1,9 +1,12 @@
 import { createHeader, createFooter, createBikeList, renderError} from '../views/main-view.js';
 import { fetchData } from '../util/fetch-data.js';
+import { setupSearchPage } from '../pages/search-page.js';
 
 export async function renderMainPage() {
     createHeader();
     createFooter();
+    setupSearchPage();
+
    
     try {
         const data = await fetchData();        
@@ -15,16 +18,3 @@ export async function renderMainPage() {
     }
 }
 
-
-
-// export function goToNextPage() {
-//     currentPage++;
-//     renderMainPage(); 
-// }
-
-// export function goToPrevPage() {
-//     if (currentPage > 1) {
-//         currentPage--;
-//         renderMainPage(); 
-//     }
-// }

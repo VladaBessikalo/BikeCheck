@@ -22,10 +22,12 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    flex-direction: column;
     padding: 20px 30px;
     background-color: rgb(0, 169, 224);
     color: rgb(255, 255, 255);
     justify-content: center;
+    align-items: center;
 
     &__logo {
         width: 50px;
@@ -43,6 +45,7 @@ body {
     &__info {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     &__name {
@@ -187,5 +190,14 @@ button {
     }
 }
 
+.search {
+    &__form {
+        color: #3A3A3A;
+    }
+
+    &__form input {
+        padding: 5px;
+    }
+}
 
 
