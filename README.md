@@ -39,3 +39,30 @@
 ---
 
 BikeCheck ensures a safer buying experience by providing a reliable way to check the history and legitimacy of used bikes.
+
+
+```
+BikeCheck/
+├── css/
+├── node_modules/
+├── public/
+├── src/
+│   ├── pages/
+│   │   ├── error-page.js
+│   │   ├── main-page.js
+│   │   └── search-page.js
+│   ├── util/
+│   │   └── fetch-data.js
+│   ├── views/
+│   │   ├── error-view.js
+│   │   ├── main-view.js
+│   │   └── search-view.js
+│   └── app.js
+├── .gitignore
+├── constants.js
+├── eslint.config.mjs
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
+```
