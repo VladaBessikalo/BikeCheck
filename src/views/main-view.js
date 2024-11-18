@@ -41,7 +41,6 @@ export function createFooter() {
 }
 
 export async function createBikeList(fetchedData) {
-    console.log(await fetchedData.data)
     const header = document.querySelector('.header');
 
     const existingContainer = document.querySelector('main.container');

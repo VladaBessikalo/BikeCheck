@@ -18,7 +18,6 @@ export async function fetchData(page = 1, ) {
     }
 
     const data = result.json();
-    
     return {data, page};
 }
 
@@ -30,24 +29,8 @@ export async function getBikesCount() {
     }
 
     const data = await result.json();
-
-    console.log(data);
-    
-    
     return data.proximity;
 }
-
-// export async function fetchData(page = 1, ) {
-//     const result = await fetch(`https://bikeindex.org:443/api/v3/search?page=${page}&per_page=24&location=NL%2C%20Amsterdam%2C%20Netherlands&distance=50&stolenness=proximity`);
-    
-//     if (!result.ok) {
-//         throw new Error("Oops", console.error);
-//     }
-
-//     const data = result.json();
-    
-//     return {data, page};
-// }
 
 export async function searchBikes({ serial, location, model }) {
     currentPage = 1;
