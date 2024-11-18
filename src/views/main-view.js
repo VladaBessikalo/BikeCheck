@@ -1,14 +1,14 @@
 import { bikeCheckLogo, instagramIcon, facebookIcon, twitterIcon, bikeIconPath } from "../../constants.js";
-// import { goToNextPage, goToPrevPage } from "../pages/main-page.js";
+import { bikesPerPage, fetchData, getBikesCount, goToNextPage, goToPrevPage, currentPage } from "../util/fetch-data.js";
 
-let currentPage = 1;
+const container = document.createElement('main');
 
 export function createHeader() {
     const header = document.createElement('header');
     header.classList.add('header');
     header.innerHTML = `
             <div class="header__logo">
-                ${bikeCheckLogo}
+                <a href='#'>${bikeCheckLogo}</a>
             </div>
             <div class="header__info">
                 <div class="header__name">BikeCheck</div>
@@ -41,6 +41,7 @@ export function createFooter() {
 }
 
 export async function createBikeList(fetchedData) {
+    console.log(await fetchedData.data)
     const header = document.querySelector('.header');
 
     const existingContainer = document.querySelector('main.container');
@@ -49,7 +50,6 @@ export async function createBikeList(fetchedData) {
         existingContainer.remove();
     }
 
-    const container = document.createElement('main');
     container.classList.add('container');
     container.innerHTML = '';
 
@@ -79,12 +79,16 @@ export async function createBikeList(fetchedData) {
                 <div class="bike__status"> ${bike.status}: ${convertTimestamp(bike.date_stolen)} </div>
                 <div class="bike__location">${bike.stolen_location}</div>
             </div>
-        `
+        `;
         bikesList.appendChild(bikeItem);
     });
 
     container.appendChild(bikesList);
-    createPagination(container);
+
+    if (!document.querySelector('.button-container')) {
+        createPagination(container);
+    }
+
     header.insertAdjacentElement('afterend', container);
 }
 
@@ -95,38 +99,47 @@ export function renderError(errorMessage) {
     body.appendChild(container);
 }
 
-function createPagination(container) {
+async function createPagination(container) {
     if (!container) {
         return
     }
+
     const buttonContainer = document.createElement('div');
+    const allBikesCount = await getBikesCount();
+
+    const pagesAmount = Math.ceil(allBikesCount / bikesPerPage);
+
     buttonContainer.innerHTML = `
         <div class="button-container">
             <button id="prev-btn" class="button" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
-            <button id="next-btn" class="button">Next</button>
+            <span>${currentPage} / ${pagesAmount}</span>
+            <button id="next-btn" class="button" ${currentPage === pagesAmount ? 'disabled' : ''}>Next</button>
         </div>
-        `
-    container.appendChild(buttonContainer);   
+        `;
+    container.appendChild(buttonContainer);
+    listenToPageChanges();
+}
 
+export function listenToPageChanges() {
     const prevBtn = container.querySelector('#prev-btn');
-    const nextBtn = container.querySelector('#next-btn');
+    const nextBtn = container.querySelector('#next-btn'); 
 
     prevBtn.addEventListener('click', async () => {
         if (currentPage > 1) {
-            currentPage--;
+            goToPrevPage();
             await refreshBikeList();
         }
     });
 
     nextBtn.addEventListener('click', async () => {
-        currentPage++;
+        goToNextPage();
         await refreshBikeList();
     });
 }
 
 async function refreshBikeList() {
-    const { fetchData } = await import('../util/fetch-data.js');
     const data = await fetchData(currentPage);
+
     await createBikeList(data);
 }
 
