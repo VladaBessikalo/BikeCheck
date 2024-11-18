@@ -54,6 +54,11 @@ body {
   font-style: italic;
 }
 
+.container {
+  flex: 1;
+  background-color: #F7F7F7;
+}
+
 .bikes {
   flex: 1;
   margin: 20px 50px;
@@ -67,6 +72,9 @@ body {
   flex-direction: row;
   flex: 1 1 calc(50% - 16px);
   box-sizing: border-box;
+  gap: 15px;
+  color: #3A3A3A;
+  background-color: #FFFFFF;
 }
 .bike__img {
   width: 300px;
@@ -86,7 +94,13 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  line-height: 20px;
+  padding: 20px;
 }
+.bike__title {
+  font-weight: 700;
+}
+
 .button-container {
   text-align: center;
   margin: 15px;
@@ -151,9 +165,15 @@ button:disabled {
   gap: 15px;
 }
 
+.search * {
+  margin: 10px;
+}
 .search__form {
   color: #3A3A3A;
 }
 .search__form input {
-  padding: 5px;
+  padding: 10px;
+  line-height: 20px;
+  border-radius: 5px;
+  color: #3A3A3A;
 }

@@ -75,9 +75,9 @@ export async function createBikeList(fetchedData) {
             </div>
             <div class="bike__info">
                 <div class="bike__title">${bike.title}</div>
-                <div class="bike__serial">Serial: ${bike.serial} </div>
+                <div class="bike__serial">Serial Number: ${bike.serial} </div>
                 <div class="bike__status"> ${bike.status}: ${convertTimestamp(bike.date_stolen)} </div>
-                <div class="bike__location">${bike.stolen_location}</div>
+                <div class="bike__location">Location: ${bike.stolen_location}</div>
             </div>
         `;
         bikesList.appendChild(bikeItem);

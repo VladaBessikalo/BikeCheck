@@ -9,9 +9,8 @@ export async function renderMainPage() {
    
     try {
         const data = await fetchData();        
-        console.log(data);
-
         await createBikeList(data);
+        
     } catch (error) {
         renderError(error)
     }
