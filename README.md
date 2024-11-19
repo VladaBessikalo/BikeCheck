@@ -2,10 +2,11 @@
 
 **BikeCheck** is a JavaScript web application that helps users verify the legitimacy of a used bike before purchase. By connecting to the **BikeIndex API**, the app allows users to search for details on a specific bike using its serial number or other identifying information. This project enables users to quickly check if a bike has been reported as stolen, ensuring a more secure buying experience.
 
-**BikeIndex API**: [BikeIndex API Documentation](https://bikeindex.org/documentation/api_v3#!/search/GET_version_search_format_get_0)
-
 The API is configured to show all stolen bikes in Amsterdam and a 50 mile radius by default. If you enter a specific location, the API will return the result of the location you are looking for and 10 miles around. But the user can search in any city in the world.
 This is done in order to expand the search query.
+
+**BikeIndex API**: [BikeIndex API Documentation](https://bikeindex.org/documentation/api_v3#!/search/GET_version_search_format_get_0)
+
 ---
 
 ## Key Features
