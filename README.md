@@ -4,6 +4,8 @@
 
 **BikeIndex API**: [BikeIndex API Documentation](https://bikeindex.org/documentation/api_v3#!/search/GET_version_search_format_get_0)
 
+The API is configured to show all stolen bikes in Amsterdam and a 50 mile radius by default. If you enter a specific location, the API will return the result of the location you are looking for and 10 miles around. But the user can search in any city in the world.
+This is done in order to expand the search query.
 ---
 
 ## Key Features
