@@ -12,7 +12,7 @@ export const bikeCheckLogo = `
             <path d="M603.4 791.7c-0.7 0-1.4-0.1-2-0.2-5.4-1.1-8.9-6.4-7.8-11.8l81.6-392.9c1.1-5.4 6.4-8.9 11.8-7.8 5.4 1.1 8.9 6.4 7.8 11.8l-81.6 392.9c-1 4.8-5.1 8-9.8 8z" fill=""></path>
         </g>
     </svg>
-`
+`;
 
 export const instagramIcon = `
     <a href="https://instagram.com" target="_blank" class="footer__social-icon footer__social-icon--instagram" aria-label="Instagram">
@@ -31,7 +31,7 @@ export const instagramIcon = `
             </g> </g>
         </svg>
     </a>
-`
+`;
 
 export const facebookIcon = `
     <a href="https://facebook.com" target="_blank" class="footer__social-icon footer__social-icon--facebook" aria-label="Facebook">
@@ -42,7 +42,7 @@ export const facebookIcon = `
             </g>
         </svg>
     </a>
-`
+`;
 
 export const twitterIcon = `
     <a href="https://twitter.com" target="_blank" class="footer__social-icon footer__social-icon--twitter" aria-label="Twitter">
@@ -53,6 +53,6 @@ export const twitterIcon = `
             </g>
         </svg>
     </a>
-`
+`;
 
-export const bikeIconPath = 'public/bike-sport-travel-svgrepo-com.svg'
+export const bikeIconPath = "public/bike-sport-travel-svgrepo-com.svg";

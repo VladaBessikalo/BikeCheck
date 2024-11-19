@@ -1,30 +1,34 @@
-import { createSearchForm } from '../views/search-view.js';
-import { searchBikes } from '../util/fetch-data.js'; 
-import { renderError } from './error-page.js';
+import { createSearchForm } from "../views/search-view.js";
+import { searchBikes } from "../util/fetch-data.js";
+import { renderError } from "./error-page.js";
 
 export async function setupSearchPage() {
-    createSearchForm();
-  
-    const form = document.getElementById('search-form');
+  createSearchForm();
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+  const form = document.getElementById("search-form");
 
-        const serial = document.getElementById('serial-input').value.trim();
-        const location = document.getElementById('location-input').value.trim();
-        const manufacturer = document.getElementById('manufacturer-input').value.trim();
-        
-        try {
-            const data = await searchBikes({ serial, location, manufacturer });
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-            if (data.bikes && data.bikes.length > 0) {
-                const { createBikeList } = await import('../views/main-view.js');
-                createBikeList({ data });
-            } else {
-                renderError('No bikes found matching your criteria')
-            }
-        } catch (error) {
-            renderError('Something went wrong while searching. Please try again later.');
-        }
-    })
+    const serial = document.getElementById("serial-input").value.trim();
+    const location = document.getElementById("location-input").value.trim();
+    const manufacturer = document
+      .getElementById("manufacturer-input")
+      .value.trim();
+
+    try {
+      const data = await searchBikes({ serial, location, manufacturer });
+
+      if (data.bikes && data.bikes.length > 0) {
+        const { createBikeList } = await import("../views/main-view.js");
+        createBikeList({ data });
+      } else {
+        renderError("No bikes found matching your criteria");
+      }
+    } catch (error) {
+      renderError(
+        `Something went wrong while searching. Please try again later. ${error}`,
+      );
+    }
+  });
 }

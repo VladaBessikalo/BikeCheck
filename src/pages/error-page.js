@@ -1,18 +1,18 @@
-import { createErrorView } from '../views/error-view.js'
+import { createErrorView } from "../views/error-view.js";
 
 export function renderError(message) {
-    createErrorView(message);
+  createErrorView(message);
 
-    const modal = document.getElementById("myModal");
-    const span = document.getElementsByClassName("close")[0];
+  const modal = document.getElementById("myModal");
+  const span = document.getElementsByClassName("close")[0];
 
-    modal.style.display = "block";
+  modal.style.display = "block";
 
-    span.addEventListener('click', () =>  modal.style.display = "none");
+  span.addEventListener("click", () => (modal.style.display = "none"));
 
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
+  window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 }

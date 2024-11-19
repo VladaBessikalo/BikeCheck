@@ -1,12 +1,25 @@
-import { bikeCheckLogo, instagramIcon, facebookIcon, twitterIcon, bikeIconPath } from "../../constants.js";
-import { bikesPerPage, fetchData, getBikesCount, goToNextPage, goToPrevPage, currentPage } from "../util/fetch-data.js";
+import {
+  bikeCheckLogo,
+  instagramIcon,
+  facebookIcon,
+  twitterIcon,
+  bikeIconPath,
+} from "../../constants.js";
+import {
+  bikesPerPage,
+  fetchData,
+  getBikesCount,
+  goToNextPage,
+  goToPrevPage,
+  currentPage,
+} from "../util/fetch-data.js";
 
-const container = document.createElement('main');
+const container = document.createElement("main");
 
 export function createHeader() {
-    const header = document.createElement('header');
-    header.classList.add('header');
-    header.innerHTML = `
+  const header = document.createElement("header");
+  header.classList.add("header");
+  header.innerHTML = `
             <div class="header__logo">
                 <span>${bikeCheckLogo}</span>
             </div>
@@ -14,15 +27,15 @@ export function createHeader() {
                 <div class="header__name">BikeCheck</div>
                 <div class="header__motto">Be on the safe side! Check before you buy!</div>
             </div>
-        `
-    const body = document.querySelector('body');
-    body.appendChild(header);
+        `;
+  const body = document.querySelector("body");
+  body.appendChild(header);
 }
 
 export function createFooter() {
-    const footer = document.createElement('footer');
-    footer.classList.add('footer');
-    footer.innerHTML = `
+  const footer = document.createElement("footer");
+  footer.classList.add("footer");
+  footer.innerHTML = `
             <div class="footer__logo">
                 <div class="footer__icon">
                     ${bikeCheckLogo}
@@ -34,41 +47,41 @@ export function createFooter() {
                 ${facebookIcon}
                 ${twitterIcon}
         </div>
-    `
-    const body = document.querySelector('body');
+    `;
+  const body = document.querySelector("body");
 
-    body.appendChild(footer);
+  body.appendChild(footer);
 }
 
 export async function createBikeList(fetchedData) {
-    const header = document.querySelector('.header');
+  const header = document.querySelector(".header");
 
-    const existingContainer = document.querySelector('main.container');
+  const existingContainer = document.querySelector("main.container");
 
-    if (existingContainer) {
-        existingContainer.remove();
-    }
+  if (existingContainer) {
+    existingContainer.remove();
+  }
 
-    container.classList.add('container');
-    container.innerHTML = '';
+  container.classList.add("container");
+  container.innerHTML = "";
 
-    const bikesList = document.createElement('ul');
-    bikesList.classList.add('bikes');
-    bikesList.innerHTML = '';
+  const bikesList = document.createElement("ul");
+  bikesList.classList.add("bikes");
+  bikesList.innerHTML = "";
 
-    function convertTimestamp(timestamp) {
-        const date = new Date(timestamp * 1000);
-        return date.toUTCString()
-    }
+  function convertTimestamp(timestamp) {
+    const date = new Date(timestamp * 1000);
+    return date.toUTCString();
+  }
 
-    const retrievedData = await fetchedData.data;
+  const retrievedData = await fetchedData.data;
 
-    retrievedData.bikes.forEach((bike) => {
-        const bikeItem = document.createElement('li');
-        bikeItem.className = 'bike';
-        const bikeImage = bike.large_img ? bike.large_img : bikeIconPath;
+  retrievedData.bikes.forEach((bike) => {
+    const bikeItem = document.createElement("li");
+    bikeItem.className = "bike";
+    const bikeImage = bike.large_img ? bike.large_img : bikeIconPath;
 
-        bikeItem.innerHTML = String.raw`
+    bikeItem.innerHTML = String.raw`
             <div class="bike__img">
                 <img class="bike__img-item" src="${bikeImage}" alt="bike-image">
             </div>
@@ -79,59 +92,58 @@ export async function createBikeList(fetchedData) {
                 <div class="bike__location">Location: ${bike.stolen_location}</div>
             </div>
         `;
-        bikesList.appendChild(bikeItem);
-    });
+    bikesList.appendChild(bikeItem);
+  });
 
-    container.appendChild(bikesList);
+  container.appendChild(bikesList);
 
-    if (!document.querySelector('.button-container')) {
-        createPagination(container);
-    }
+  if (!document.querySelector(".button-container")) {
+    createPagination(container);
+  }
 
-    header.insertAdjacentElement('afterend', container);
+  header.insertAdjacentElement("afterend", container);
 }
 
 async function createPagination(container) {
-    if (!container) {
-        return
-    }
+  if (!container) {
+    return;
+  }
 
-    const buttonContainer = document.createElement('div');
-    const allBikesCount = await getBikesCount();
+  const buttonContainer = document.createElement("div");
+  const allBikesCount = await getBikesCount();
 
-    const pagesAmount = Math.ceil(allBikesCount / bikesPerPage);
+  const pagesAmount = Math.ceil(allBikesCount / bikesPerPage);
 
-    buttonContainer.innerHTML = `
+  buttonContainer.innerHTML = `
         <div class="button-container">
-            <button id="prev-btn" class="button" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
+            <button id="prev-btn" class="button" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
             <span>${currentPage} / ${pagesAmount}</span>
-            <button id="next-btn" class="button" ${currentPage === pagesAmount ? 'disabled' : ''}>Next</button>
+            <button id="next-btn" class="button" ${currentPage === pagesAmount ? "disabled" : ""}>Next</button>
         </div>
         `;
-    container.appendChild(buttonContainer);
-    listenToPageChanges();
+  container.appendChild(buttonContainer);
+  listenToPageChanges();
 }
 
 export function listenToPageChanges() {
-    const prevBtn = container.querySelector('#prev-btn');
-    const nextBtn = container.querySelector('#next-btn'); 
+  const prevBtn = container.querySelector("#prev-btn");
+  const nextBtn = container.querySelector("#next-btn");
 
-    prevBtn.addEventListener('click', async () => {
-        if (currentPage > 1) {
-            goToPrevPage();
-            await refreshBikeList();
-        }
-    });
+  prevBtn.addEventListener("click", async () => {
+    if (currentPage > 1) {
+      goToPrevPage();
+      await refreshBikeList();
+    }
+  });
 
-    nextBtn.addEventListener('click', async () => {
-        goToNextPage();
-        await refreshBikeList();
-    });
+  nextBtn.addEventListener("click", async () => {
+    goToNextPage();
+    await refreshBikeList();
+  });
 }
 
 async function refreshBikeList() {
-    const data = await fetchData(currentPage);
+  const data = await fetchData(currentPage);
 
-    await createBikeList(data);
+  await createBikeList(data);
 }
-

@@ -1,13 +1,4 @@
 @import url("reset.css");
-/* main colors 
-
-    color: rgb(0,169,224);
-    color: rgb(247,247,247);
-    color: rgb(255,255,255);
-    color: rgb(58,58,58);
-    color: rgb(253,180,66);
-
-*/
 body {
   margin: 0;
   padding: 0;
@@ -56,7 +47,7 @@ body {
 
 .container {
   flex: 1;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 .bikes {
@@ -73,8 +64,8 @@ body {
   flex: 1 1 calc(50% - 16px);
   box-sizing: border-box;
   gap: 15px;
-  color: #3A3A3A;
-  background-color: #FFFFFF;
+  color: #3a3a3a;
+  background-color: #ffffff;
 }
 .bike__img {
   width: 300px;
@@ -119,20 +110,20 @@ button {
   cursor: pointer;
   outline: none;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #FDB442;
-  color: #FFFFFF;
+  background-color: #fdb442;
+  color: #ffffff;
 }
 button:hover {
-  background-color: #E29C38;
+  background-color: #e29c38;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
 }
 button:active {
-  background-color: #BF802E;
+  background-color: #bf802e;
   transform: scale(0.95);
 }
 button:disabled {
-  background-color: #F7F7F7;
-  color: #B0B0B0;
+  background-color: #f7f7f7;
+  color: #b0b0b0;
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -169,13 +160,13 @@ button:disabled {
   margin: 10px;
 }
 .search__form {
-  color: #3A3A3A;
+  color: #3a3a3a;
 }
 .search__form input {
   padding: 10px;
   line-height: 20px;
   border-radius: 5px;
-  color: #3A3A3A;
+  color: #3a3a3a;
 }
 
 .message__container {
@@ -216,7 +207,7 @@ button:disabled {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.7);
-  color: #3A3A3A;
+  color: #3a3a3a;
 }
 
 .modal-content {
